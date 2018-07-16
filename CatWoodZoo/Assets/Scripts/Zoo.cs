@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Zoo : MonoBehaviour {
+    
+    public static Zoo instance;
+    public Dictionary<Vector2Int, bool> Spaces;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Awake()
+    {
+        instance = this;
+        Spaces = new Dictionary<Vector2Int, bool>();
+    }
+
 }
