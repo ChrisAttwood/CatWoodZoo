@@ -6,7 +6,9 @@ using UnityEngine;
 public class BluePrint : ScriptableObject {
 
     public GameObject Structure;
-    
+
+    public bool IsPath;
+
     public BuildType BuildType;
 
     public bool SingleGameObject;

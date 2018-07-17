@@ -31,17 +31,19 @@ public class CameraMan : MonoBehaviour {
         {
             if (transform.rotation.eulerAngles.x < 60f)
             {
-                transform.Translate(Vector3.up * (Speed * 4), Space.World);
-                transform.Rotate(-Vector3.left * 2f);
+                if (!NearGround())
+                {
+                    transform.Translate(Vector3.up * -(Speed * 4), Space.World);
+                }
+               // transform.Rotate(-Vector3.left * 2f);
             }
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0f) 
         {
-            if (!NearGround())
-            {
-                transform.Translate(Vector3.up * -(Speed * 4), Space.World);
-                transform.Rotate(Vector3.left * 2f);
-            }
+            
+                transform.Translate(Vector3.up * (Speed * 4), Space.World);
+              //  transform.Rotate(Vector3.left * 2f);
+           
         }
     }
 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Name: Path
   m_EditorClassIdentifier: 
   Structure: {fileID: 1161683505983706, guid: f2de8c4962f872047916b489da34d2a4, type: 2}
+  IsPath: 1
   BuildType: 2
   SingleGameObject: 0
   FootPrintData:
