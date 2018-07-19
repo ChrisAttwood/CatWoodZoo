@@ -7,6 +7,7 @@ public class Zoo : MonoBehaviour {
     public static Zoo instance;
     public Dictionary<Vector2Int, bool> Spaces;
     public Dictionary<Vector2Int, bool> Path;
+    public Dictionary<Vector2Int, Fence> Fences;
 
     public GameObject WallPrefab;
     public GameObject PathPrefab;
@@ -25,12 +26,14 @@ public class Zoo : MonoBehaviour {
         instance = this;
         Spaces = new Dictionary<Vector2Int, bool>();
         Path = new Dictionary<Vector2Int, bool>();
+        Fences = new Dictionary<Vector2Int, Fence>();
         for (int x =0; x < Size; x++)
         {
             for (int y = 0; y < Size; y++)
             {
                 Spaces[new Vector2Int(x, y)] = true;
                 Path[new Vector2Int(x, y)] = false;
+                Fences[new Vector2Int(x, y)] = null;
             }
 
            
