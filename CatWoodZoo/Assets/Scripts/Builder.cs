@@ -152,7 +152,7 @@ public class Builder : MonoBehaviour {
 
             foreach (var spot in shape)
             {
-                Zoo.instance.Spaces[spot] = false;
+                Zoo.instance.Spaces[spot] = !CurrentBluePrint.IsBlocker;
                 Zoo.instance.Path[spot] = CurrentBluePrint.IsPath;
             }
         }
@@ -164,7 +164,7 @@ public class Builder : MonoBehaviour {
                 var block = Instantiate(CurrentBluePrint.Structure);
                 block.transform.position = new Vector3(spot.x, 0f, spot.y);
                 block.transform.SetParent(Zoo.instance.transform);
-                Zoo.instance.Spaces[spot] = false;
+                Zoo.instance.Spaces[spot] = !CurrentBluePrint.IsBlocker;
                 Zoo.instance.Path[spot] = CurrentBluePrint.IsPath;
             }
         }

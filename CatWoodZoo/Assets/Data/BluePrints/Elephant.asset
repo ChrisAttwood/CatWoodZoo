@@ -9,11 +9,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b92ab398bf2465444b59be2ecc66f7d9, type: 3}
-  m_Name: Fence
+  m_Name: Elephant
   m_EditorClassIdentifier: 
-  Structure: {fileID: 1148321276341160, guid: d6662f6caefb5a544bff936bfc034aff, type: 2}
+  Structure: {fileID: 1630617238324494, guid: edf038aee82e3bb44a379bc77daa8e73, type: 2}
+  IsBlocker: 0
   IsPath: 0
-  BuildType: 2
+  BuildType: 0
   SingleGameObject: 0
   FootPrintData:
     rows:

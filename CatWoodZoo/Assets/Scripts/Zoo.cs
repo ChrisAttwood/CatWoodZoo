@@ -19,6 +19,7 @@ public class Zoo : MonoBehaviour {
 
     public float GuestRate = 500f;
 
+    public Vector2Int Exit = new Vector2Int(2, 0);
 
 
     private void Awake()
@@ -106,6 +107,30 @@ public class Zoo : MonoBehaviour {
         block.transform.SetParent(Zoo.instance.transform);
         instance.Spaces[pos] = false;
         
+
+    }
+
+    public Dictionary<Vector2Int,bool> GetZone(Vector2Int start)
+    {
+        Dictionary<Vector2Int, bool> zone = new Dictionary<Vector2Int, bool>();
+        Fill(zone, start);
+
+        return zone;
+    }
+
+    void Fill(Dictionary<Vector2Int, bool> zone, Vector2Int v2)
+    {
+        if (zone.ContainsKey(v2)) return;
+        if (!Spaces.ContainsKey(v2)) return;
+        if (!Spaces[v2]) return;
+
+        zone.Add(v2, true);
+
+
+        Fill(zone, new Vector2Int(v2.x + 1, v2.y));
+        Fill(zone, new Vector2Int(v2.x - 1, v2.y));
+        Fill(zone, new Vector2Int(v2.x, v2.y + 1));
+        Fill(zone, new Vector2Int(v2.x, v2.y - 1));
 
     }
 

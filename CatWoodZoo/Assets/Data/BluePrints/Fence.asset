@@ -9,10 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b92ab398bf2465444b59be2ecc66f7d9, type: 3}
-  m_Name: Path
+  m_Name: Fence
   m_EditorClassIdentifier: 
-  Structure: {fileID: 1161683505983706, guid: f2de8c4962f872047916b489da34d2a4, type: 2}
-  IsPath: 1
+  Structure: {fileID: 1148321276341160, guid: d6662f6caefb5a544bff936bfc034aff, type: 2}
+  IsBlocker: 1
+  IsPath: 0
   BuildType: 2
   SingleGameObject: 0
   FootPrintData:
