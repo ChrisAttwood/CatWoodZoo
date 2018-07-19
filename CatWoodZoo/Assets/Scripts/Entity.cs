@@ -8,6 +8,8 @@ public class Entity : MonoBehaviour {
     Vector2Int? Target;
     PathFinder pf;
 
+    public float Speed = 1f;
+
     void Update()
     {
         End();
@@ -58,7 +60,7 @@ public class Entity : MonoBehaviour {
         if (Vector2.Distance(Where(), Path[Step]) > 0)
         {
 
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(Path[Step].x, 0f, Path[Step].y), 10f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(Path[Step].x, 0f, Path[Step].y), Speed * Time.deltaTime);
 
         }
         else

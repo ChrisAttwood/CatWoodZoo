@@ -882,7 +882,7 @@ Prefab:
     - target: {fileID: 114208037283700368, guid: 856216e5543199340a621a3d4a413ab1,
         type: 2}
       propertyPath: GuestRate
-      value: 500
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4706057677318666, guid: 856216e5543199340a621a3d4a413ab1, type: 2}
       propertyPath: m_LocalScale.x

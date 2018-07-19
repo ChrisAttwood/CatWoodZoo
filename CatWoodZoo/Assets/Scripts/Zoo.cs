@@ -43,14 +43,14 @@ public class Zoo : MonoBehaviour {
 
     private void Start()
     {
-        Invoke("Guest", 1000f/GuestRate);
+        Invoke("Guest", 100f/GuestRate);
     }
 
     void Guest()
     {
         var preson = Instantiate(PersonPrefab);
         preson.transform.position = new Vector3( 2,0f,Size-1);
-       // Invoke("Guest", 1000f / GuestRate);
+        Invoke("Guest", 100f / GuestRate);
     }
 
     void BuildOutterEdge()
