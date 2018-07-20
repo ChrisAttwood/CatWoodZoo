@@ -7,26 +7,30 @@ public class GoHome : Activity {
 
     public override bool IsApplicable(Entity entity)
     {
-        return true;
+
+        if (entity.Tiredness >= 100)
+        {
+            return true;
+        }
+
+        if (entity.Boredom >= 100)
+        {
+            return true;
+        }
+
+        return false;
+
     }
 
     public override ActivityData GetActivityData(Entity entity)
     {
         return new ActivityData
         {
-            Target = Zoo.instance.Exit,
+            Target = Zoo.instance.Home,
             Zone = Zoo.instance.Path
 
         };
     }
 
-    //public override Vector2Int? GetTarget(Entity entity)
-    //{
-    //    return Zoo.instance.Exit;
-    //}
 
-    //public override Dictionary<Vector2Int, bool> GetZone(Entity entity)
-    //{
-    //    return Zoo.instance.Path;
-    //}
 }

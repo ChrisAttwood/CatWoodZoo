@@ -149,7 +149,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 17a41b3e657aad74da0b894a25ff762a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -184,7 +184,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 91401bf18545b96488e4a993a4f118c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -241,7 +241,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Activities:
+  - {fileID: 11400000, guid: 5e8d575a31c9bbf4abb10d44e0c77be8, type: 2}
   - {fileID: 11400000, guid: b2b793c100c291e48b1601e4073b5a81, type: 2}
+  - {fileID: 11400000, guid: 5e189c35f6abe49479378004de3ce703, type: 2}
+  - {fileID: 11400000, guid: 2fa3a8f2d99b3db4d8ec02cfb481b377, type: 2}
+  HasPaid: 0
+  HasRated: 0
+  Boredom: 0
+  Tiredness: 0
+  Rating: 0
+  SeenAnimals: []
   Speed: 2
 --- !u!135 &135349350605495738
 SphereCollider:

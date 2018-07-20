@@ -7,6 +7,14 @@ public class Entity : MonoBehaviour {
 
     public Activity[] Activities;
 
+    public bool HasPaid = false;
+    public bool HasRated = false;
+
+    public int Boredom = 0;
+    public int Tiredness = 0;
+    public int Rating = 0;
+
+    public List<Animal> SeenAnimals;
 
     Vector2Int? Target;
     PathFinder pf;
@@ -15,9 +23,14 @@ public class Entity : MonoBehaviour {
 
     Dictionary<Vector2Int, bool> Zone;
 
+    private void Start()
+    {
+        SeenAnimals = new List<Animal>();
+    }
+
     void Update()
     {
-        End();
+        SpotCheck();
 
         if (Target != null)
         {
@@ -41,26 +54,52 @@ public class Entity : MonoBehaviour {
                 {
                     Zone = data.Zone;
                     MoveTo(data.Target,data.Zone);
+
+                    return;
                 }
 
                
             }
         }
 
-       
-    }
-
-
-    public Vector2Int Where()
-    {
-        return new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.z));
     }
 
 
 
-    void End()
+    void SpotCheck()
     {
-        if (Where() == new Vector2Int(2, 0))
+        if (transform.Where() == Zoo.instance.Enterance)
+        {
+            if (!HasPaid)
+            {
+                HasPaid = true;
+                Zoo.instance.Cash += Zoo.instance.Ticket;
+                Rating -= Zoo.instance.Ticket;
+                
+            }
+
+        }
+
+        if (transform.Where() == Zoo.instance.Exit)
+        {
+            if (!HasRated)
+            {
+                HasRated = true;
+                Zoo.instance.Rate += Rating;
+                if (Zoo.instance.Rate < 0)
+                {
+                    Zoo.instance.Rate = 0;
+                }
+
+                if (Zoo.instance.Rate > 100)
+                {
+                    Zoo.instance.Rate = 100;
+                }
+            }
+            
+        }
+
+        if (transform.Where() == Zoo.instance.Home)
         {
             Destroy(gameObject);
         }
@@ -78,7 +117,7 @@ public class Entity : MonoBehaviour {
 
     public void GoToTarget()
     {
-        if (Vector2.Distance(Where(), Path[Step]) > 0)
+        if (Vector2.Distance(transform.Where(), Path[Step]) > 0)
         {
 
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(Path[Step].x, 0f, Path[Step].y), Speed * Time.deltaTime);
@@ -108,7 +147,7 @@ public class Entity : MonoBehaviour {
         Target = targetLocation;
         pf = new PathFinder(zone, false, 1000);
 
-        Path = pf.GetPath(Where(), targetLocation).ToList();
+        Path = pf.GetPath(transform.Where(), targetLocation).ToList();
         Step = 0;
         NewStep();
     }

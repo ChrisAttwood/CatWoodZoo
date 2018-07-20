@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Name: Path
   m_EditorClassIdentifier: 
   Structure: {fileID: 1161683505983706, guid: f2de8c4962f872047916b489da34d2a4, type: 2}
-  IsBlocker: 1
+  IsBlocker: 0
+  IsStructure: 1
   IsPath: 1
+  Cash: 10
   BuildType: 2
   SingleGameObject: 0
   FootPrintData:

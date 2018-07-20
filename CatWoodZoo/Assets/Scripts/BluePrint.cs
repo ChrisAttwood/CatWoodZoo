@@ -8,7 +8,10 @@ public class BluePrint : ScriptableObject {
     public GameObject Structure;
 
     public bool IsBlocker;
+    public bool IsStructure;
     public bool IsPath;
+
+    public int Cash;
 
     public BuildType BuildType;
 

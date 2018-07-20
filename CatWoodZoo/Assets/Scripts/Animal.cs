@@ -8,13 +8,15 @@ public class Animal : MonoBehaviour {
     public int Size = 1;
 
    
+    [Range(1,5)]
+    public int Appeal = 1;
 
-	// Use this for initialization
-	void Start () {
-		
+
+    void Start () {
+        Zoo.instance.Animals.Add(this);
 	}
 	
-	// Update is called once per frame
+	
 	void Update () {
 		
 	}

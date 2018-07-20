@@ -13,9 +13,7 @@ public class Stroll : Activity {
 
     public override ActivityData GetActivityData(Entity entity)
     {
-        var zone = Zoo.instance.GetZone(entity.Where());
-      //  Debug.Log(zone.Count);
-        //  var target = zone.Keys.ElementAt(Random.Range(0, zone.Count));
+        var zone = Zoo.instance.GetZone(entity.transform.Where());
 
         List<Vector2Int> values = Enumerable.ToList(zone.Keys);
 

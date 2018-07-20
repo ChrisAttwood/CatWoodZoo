@@ -142,30 +142,42 @@ public class Builder : MonoBehaviour {
 
         if (!CanBuildHere(shape)) return;
 
+       
 
         if (CurrentBluePrint.SingleGameObject)
         {
-            var center = ClickPlane.instance.GetGridPosition().Value;
-            var block = Instantiate(CurrentBluePrint.Structure);
-            block.transform.position = new Vector3(center.x,0f, center.y);
-            block.transform.SetParent(Zoo.instance.transform);
-
-            foreach (var spot in shape)
+            if (Zoo.instance.Cash >= CurrentBluePrint.Cash)
             {
-                Zoo.instance.Spaces[spot] = !CurrentBluePrint.IsBlocker;
-                Zoo.instance.Path[spot] = CurrentBluePrint.IsPath;
+                Zoo.instance.Cash -= CurrentBluePrint.Cash;
+                var center = ClickPlane.instance.GetGridPosition().Value;
+                var block = Instantiate(CurrentBluePrint.Structure);
+                block.transform.position = new Vector3(center.x, 0f, center.y);
+                block.transform.SetParent(Zoo.instance.transform);
+                
+                foreach (var spot in shape)
+                {
+                    Zoo.instance.Spaces[spot] = !CurrentBluePrint.IsBlocker;
+                    Zoo.instance.Path[spot] = CurrentBluePrint.IsPath;
+                    Zoo.instance.Structures[spot] = CurrentBluePrint.IsStructure;
+                }
             }
         }
         else
         {
             foreach (var spot in shape)
             {
-                
-                var block = Instantiate(CurrentBluePrint.Structure);
-                block.transform.position = new Vector3(spot.x, 0f, spot.y);
-                block.transform.SetParent(Zoo.instance.transform);
-                Zoo.instance.Spaces[spot] = !CurrentBluePrint.IsBlocker;
-                Zoo.instance.Path[spot] = CurrentBluePrint.IsPath;
+                if(Zoo.instance.Cash >= CurrentBluePrint.Cash)
+                {
+                    Zoo.instance.Cash -= CurrentBluePrint.Cash;
+                    var block = Instantiate(CurrentBluePrint.Structure);
+                    block.transform.position = new Vector3(spot.x, 0f, spot.y);
+                    block.transform.SetParent(Zoo.instance.transform);
+                    Zoo.instance.Spaces[spot] = !CurrentBluePrint.IsBlocker;
+                    Zoo.instance.Path[spot] = CurrentBluePrint.IsPath;
+                    Zoo.instance.Structures[spot] = CurrentBluePrint.IsStructure;
+                }
+
+              
             }
         }
     }
@@ -217,7 +229,7 @@ public class Builder : MonoBehaviour {
     {
         foreach (var spot in shape)
         {
-            if (Zoo.instance.Spaces[spot] == false )
+            if (Zoo.instance.Structures[spot] == true )
             {
                 return false;
             }

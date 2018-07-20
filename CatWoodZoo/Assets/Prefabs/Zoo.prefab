@@ -59,7 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 0b4fd76ba3f160f46bdec908d00ebfbb, type: 2}
+  - {fileID: 2100000, guid: 0dd494f3414b9424687e356b9a516b8e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -122,10 +122,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56f0057bb104c334e8fa05370f0cafb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Animals: []
   WallPrefab: {fileID: 1037197542951866, guid: 36c012ad524c9f34d8800231b55d7330, type: 2}
   PathPrefab: {fileID: 1161683505983706, guid: f2de8c4962f872047916b489da34d2a4, type: 2}
   Size: 100
   PersonPrefab: {fileID: 114485968504562632, guid: bad4ffa95e10d7c40b6ff77e0c530db7,
     type: 2}
-  GuestRate: 50
-  Exit: {x: 2, y: 0}
+  Cash: 2500
+  Rate: 0
+  Ticket: 10
+  Arrive: {x: 2, y: 99}
+  Enterance: {x: 5, y: 51}
+  Exit: {x: 5, y: 49}
+  Home: {x: 2, y: 0}

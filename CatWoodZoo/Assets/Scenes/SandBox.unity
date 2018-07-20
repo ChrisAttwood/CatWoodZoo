@@ -306,7 +306,7 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -385,6 +385,11 @@ Prefab:
       propertyPath: Speed
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 20703673094245204, guid: a6bfaec2eaddcf74a90eb193b926c8eb,
+        type: 2}
+      propertyPath: m_ForceIntoRT
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6bfaec2eaddcf74a90eb193b926c8eb, type: 2}
   m_IsPrefabAsset: 0
@@ -427,6 +432,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114208037283700368, guid: 856216e5543199340a621a3d4a413ab1,
+        type: 2}
+      propertyPath: WallPrefab
+      value: 
+      objectReference: {fileID: 1037197542951866, guid: 36c012ad524c9f34d8800231b55d7330,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 856216e5543199340a621a3d4a413ab1, type: 2}
   m_IsPrefabAsset: 0

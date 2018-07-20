@@ -13,7 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Structure: {fileID: 1148321276341160, guid: d6662f6caefb5a544bff936bfc034aff, type: 2}
   IsBlocker: 1
+  IsStructure: 1
   IsPath: 0
+  Cash: 20
   BuildType: 2
   SingleGameObject: 0
   FootPrintData:

@@ -26,7 +26,7 @@ public class Fence : MonoBehaviour {
     {
         //var pos = Where();
         //Zoo.instance.Fences[pos] = this;
-        var pos = Where();
+        var pos = transform.Where();
         Zoo.instance.Fences[pos] = this;
         SetNeighbor(BlockDirection.N, Zoo.instance.Fences[new Vector2Int(pos.x, pos.y + 1)]);
         SetNeighbor(BlockDirection.S, Zoo.instance.Fences[new Vector2Int(pos.x, pos.y - 1)]);
@@ -35,10 +35,10 @@ public class Fence : MonoBehaviour {
         BuildFence();
     }
 
-    Vector2Int Where()
-    {
-        return new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.z));
-    }
+    //Vector2Int Where()
+    //{
+    //    return new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.z));
+    //}
 
     public void SetJoin(BlockDirection bd,bool on)
     {

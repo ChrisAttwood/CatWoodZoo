@@ -1,25 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Zoo : MonoBehaviour {
     
     public static Zoo instance;
     public Dictionary<Vector2Int, bool> Spaces;
+    public Dictionary<Vector2Int, bool> Structures;
     public Dictionary<Vector2Int, bool> Path;
     public Dictionary<Vector2Int, Fence> Fences;
 
+    public List<Animal> Animals;
+
     public GameObject WallPrefab;
     public GameObject PathPrefab;
+
+
 
 
     public int Size = 100;
 
     public Person PersonPrefab;
 
-    public float GuestRate = 500f;
+    public int Cash = 1000;
+    public int Rate = 0;
+    public int Ticket = 10;
 
-    public Vector2Int Exit = new Vector2Int(2, 0);
+
+    public Vector2Int Arrive = new Vector2Int(2, 99);
+    public Vector2Int Enterance = new Vector2Int(5, 51);
+    public Vector2Int Exit = new Vector2Int(5, 49);
+    public Vector2Int Home = new Vector2Int(2, 0);
+   
+
 
 
     private void Awake()
@@ -28,6 +42,8 @@ public class Zoo : MonoBehaviour {
         Spaces = new Dictionary<Vector2Int, bool>();
         Path = new Dictionary<Vector2Int, bool>();
         Fences = new Dictionary<Vector2Int, Fence>();
+        Structures = new Dictionary<Vector2Int, bool>();
+        Animals = new List<Animal>();
         for (int x =0; x < Size; x++)
         {
             for (int y = 0; y < Size; y++)
@@ -35,6 +51,7 @@ public class Zoo : MonoBehaviour {
                 Spaces[new Vector2Int(x, y)] = true;
                 Path[new Vector2Int(x, y)] = false;
                 Fences[new Vector2Int(x, y)] = null;
+                Structures[new Vector2Int(x, y)] = false;
             }
 
            
@@ -44,14 +61,16 @@ public class Zoo : MonoBehaviour {
 
     private void Start()
     {
-        Invoke("Guest", 100f/GuestRate);
+       
+        Guest();
+       
     }
 
     void Guest()
     {
         var preson = Instantiate(PersonPrefab);
-        preson.transform.position = new Vector3( 2,0f,Size-1);
-        Invoke("Guest", 100f / GuestRate);
+        preson.transform.position = new Vector3(Arrive.x, 0f, Arrive.y);
+        Invoke("Guest", (50f / (Rate+10f)) + Random.Range(0f,1f));
     }
 
     void BuildOutterEdge()
@@ -88,6 +107,7 @@ public class Zoo : MonoBehaviour {
         }
 
         AddPath(new Vector2Int( 7, 50));
+       // AddPath(new Vector2Int(2, 50));
     }
 
 
@@ -96,9 +116,9 @@ public class Zoo : MonoBehaviour {
         var block = Instantiate(PathPrefab);
         block.transform.position = new Vector3(pos.x, 0f, pos.y);
         block.transform.SetParent(Zoo.instance.transform);
-        instance.Spaces[pos] = false;
+        instance.Spaces[pos] = true;
         instance.Path[pos] = true;
-
+        instance.Structures[pos] = true;
     }
     void AddWall(Vector2Int pos)
     {
@@ -106,7 +126,7 @@ public class Zoo : MonoBehaviour {
         block.transform.position = new Vector3(pos.x, 0f, pos.y);
         block.transform.SetParent(Zoo.instance.transform);
         instance.Spaces[pos] = false;
-        
+        instance.Structures[pos] = true;
 
     }
 
@@ -132,6 +152,40 @@ public class Zoo : MonoBehaviour {
         Fill(zone, new Vector2Int(v2.x, v2.y + 1));
         Fill(zone, new Vector2Int(v2.x, v2.y - 1));
 
+    }
+
+    public Vector2Int? AnimalView(Entity entity)
+    {
+        Dictionary<Vector2Int,Animal> points = new Dictionary<Vector2Int, Animal>();
+        foreach (Animal a in Animals.Except(entity.SeenAnimals))
+        {
+            Vector2Int aPos = a.transform.Where();
+            for(int x = -a.Size + aPos.x; x < a.Size + aPos.x; x++)
+            {
+                for (int y = -a.Size + aPos.y; y < a.Size+ aPos.y; y++)
+                {
+                    var pos = new Vector2Int(x, y);
+                    if (instance.Path.ContainsKey(pos) && instance.Path[pos])
+                    {
+                        if (!points.ContainsKey(pos))
+                        {
+                            points.Add(pos, a);
+                        }
+                        
+                    }
+                }
+            }
+        }
+        if (points.Count > 0)
+        {
+            int index = Random.Range(0, points.Count);
+            entity.SeenAnimals.Add(points.ElementAt(index).Value);
+            entity.Rating += points.ElementAt(index).Value.Appeal;
+            return points.ElementAt(index).Key;
+        }
+       
+
+        return null;
     }
 
 
